@@ -1,75 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Maven POM文件的根元素，定义了XML版本和编码 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<!-- 指定POM模型版本，Maven 2和3都使用4.0.0 -->
 	<modelVersion>4.0.0</modelVersion>
+
+	<!-- 父项目配置，继承Spring Boot的默认配置 -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>3.5.4</version> <!-- Spring Boot版本，提供依赖管理和插件配置 -->
+		<relativePath/> <!-- 从仓库查找父项目，而非本地目录 -->
 	</parent>
-	<groupId>net.heibbs</groupId>
-	<artifactId>heibbs</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>heibbs</name>
-	<description>heibbs</description>
-	<url/>
+
+	<!-- 项目基本信息 -->
+	<groupId>net.heibbs</groupId> <!-- 组织ID，通常是域名反转 -->
+	<artifactId>heibbs</artifactId> <!-- 项目ID，唯一标识项目 -->
+	<version>0.0.1-SNAPSHOT</version> <!-- 版本号，SNAPSHOT表示开发中版本 -->
+	<name>heibbs</name> <!-- 项目名称 -->
+	<description>这个是罗小黑妖灵论坛新项目！</description> <!-- 项目描述 -->
+	<url/> <!-- 项目主页URL，可留空 -->
+
+	<!-- 许可证信息，当前未配置 -->
 	<licenses>
 		<license/>
 	</licenses>
+
+	<!-- 开发者信息，当前未配置 -->
 	<developers>
 		<developer/>
 	</developers>
+
+	<!-- 版本控制信息，当前未配置 -->
 	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
+		<connection/> <!-- 版本控制连接地址 -->
+		<developerConnection/> <!-- 开发者版本控制连接地址 -->
+		<tag/> <!-- 标签 -->
+		<url/> <!-- 版本控制浏览URL -->
 	</scm>
+
+	<!-- 自定义属性配置 -->
 	<properties>
-		<java.version>24</java.version>
+		<java.version>24</java.version> <!-- 指定使用的Java版本 -->
 	</properties>
+
+	<!-- 项目模块导入 -->
+	<modules>
+		<module>heibbs-security</module>
+	</modules>
+
+	<!-- 项目依赖配置 -->
 	<dependencies>
+		<!-- Spring Security依赖，提供安全认证授权功能 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
+		<!-- Lombok依赖，简化Java代码（如getter/setter） -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional> <!-- 表示该依赖不会传递给其他项目 -->
+		</dependency>
+
+		<!-- Spring Boot测试依赖，包含JUnit等测试框架 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope> <!-- 仅在测试阶段生效 -->
+		</dependency>
+
+		<!-- Spring Security测试支持，提供安全相关的测试工具 -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope> <!-- 仅在测试阶段生效 -->
+		</dependency>
+
+		<!-- Lombok注解处理器，用于编译期处理Lombok注解 -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
+			<scope>provided</scope> <!-- 表示由JDK或容器提供，不打包到最终产物 -->
 		</dependency>
 	</dependencies>
 
+
+	<!-- 构建配置 -->
 	<build>
 		<plugins>
+			<!-- Maven编译器插件，用于编译Java代码 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+
+				<!-- 以下配置因兼容性问题被注释
 				<configuration>
-					<annotationProcessorPaths>
-						<path>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</path>
-					</annotationProcessorPaths>
-				</configuration>
+				<!- 注解处理器路径配置，用于指定Lombok等注解处理器 -->
+				<!--					<annotationProcessorPaths>-->
+				<!--						<path>-->
+				<!--							<groupId>org.projectlombok</groupId>-->
+				<!--							<artifactId>lombok</artifactId>-->
+				<!--						</path>-->
+				<!--					</annotationProcessorPaths>-->
+				<!--				</configuration>-->
 			</plugin>
+
+			<!-- Spring Boot Maven插件，提供打包、运行等功能 -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<!-- 排除Lombok，因为它是编译期依赖，不需要打包到最终JAR -->
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
