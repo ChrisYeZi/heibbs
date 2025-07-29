@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Maven POM文件头部声明
+  - version: XML版本
+  - encoding: 字符编码为UTF-8
+  - xmlns: 命名空间声明，遵循Maven 4.0.0规范
+  - xsi:schemaLocation: 指定XML Schema位置，用于验证POM结构
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- 指定POM模型版本，Maven 2/3统一使用4.0.0 -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 项目基本坐标信息（GAV坐标） -->
+    <artifactId>heibbs-api</artifactId> <!-- 模块唯一标识 -->
+    <version>0.0.1-SNAPSHOT</version> <!-- 版本号，与父模块保持一致 -->
+    <name>heibbs-api</name> <!-- 模块名称 -->
+    <description>heibbs-api</description> <!-- 模块描述 -->
+    <url/> <!-- 项目主页URL，暂未配置 -->
+
+    <!-- 许可证信息，暂未配置 -->
+    <licenses>
+        <license/>
+    </licenses>
+
+    <!-- 开发者信息，暂未配置 -->
+    <developers>
+        <developer/>
+    </developers>
+
+    <!-- 版本控制信息，暂未配置 -->
+    <scm>
+        <connection/> <!-- 版本控制仓库连接地址 -->
+        <developerConnection/> <!-- 开发者权限的仓库连接地址 -->
+        <tag/> <!-- 代码标签（通常用于标记发布版本） -->
+        <url/> <!-- 版本控制可视化页面URL -->
+    </scm>
+
+    <!-- 自定义属性配置 -->
+    <properties>
+        <java.version>24</java.version> <!-- 指定该模块使用的Java版本 -->
+    </properties>
+
+    <!-- 父模块继承配置 -->
+    <parent>
+        <artifactId>heibbs</artifactId> <!-- 父模块的唯一标识 -->
+        <groupId>net.heibbs</groupId> <!-- 父模块的组织ID -->
+        <version>0.0.1-SNAPSHOT</version> <!-- 父模块的版本号 -->
+        <!-- 未指定relativePath，默认从本地仓库查找父POM，找不到则从远程仓库下载 -->
+    </parent>
+
+    <!-- 模块依赖配置（当前为空，需根据功能添加） -->
+    <dependencies>
+        <dependency>
+            <groupId>net.heibbs</groupId>
+            <artifactId>heibbs-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!--
+          此处应添加该模块所需的依赖，例如：
+          - Spring Security相关依赖
+          - 与父模块或其他子模块的依赖关系
+          - 第三方库依赖
+
+          示例：
+          <dependency>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-starter-security</artifactId>
+          </dependency>
+        -->
+    </dependencies>
+
+</project>

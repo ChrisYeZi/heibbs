@@ -1,0 +1,8 @@
+# 应用名称
+spring:
+  application:
+    name: heibbs
+  security:
+    user:
+      name: 'test'
+      password: test

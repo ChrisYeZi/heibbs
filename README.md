@@ -21,7 +21,6 @@
     - 第三方服务集成
 
 3. heibbs-api:
-    - 控制器(controller)
     - 请求参数验证
     - 接口文档配置(Swagger/SpringDoc)
     - 前后端交互DTO
@@ -37,6 +36,7 @@
     - 权限管理相关功能
 
 6. heibbs-boot:
+    - 控制器(controller)
     - Spring Boot启动类
     - 主配置文件(application.yml)
     - 外部化配置管理
